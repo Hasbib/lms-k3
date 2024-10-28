@@ -1,0 +1,145 @@
+:root {
+    --colorHijau: #06a73b;
+    --colorRed: #f44336;
+    --colorOrange: #fdc04e;
+    --colorStart: #ffc300;
+    --colorOren: #fcd980;
+    --colorKuning: #fbff00;
+    --colorPrimary: #001aff;
+    --colorBG: #fbfada;
+    --colorBlue: #4582ff;
+    --colorGreen: #00d6d3;
+    --colorBlack: #0f2239;
+    --paraColor: #636363;
+    --ratingColor: #f1cc38;
+    --colorWhite: #ffffff;
+    --colorSidebar: #9197b3;
+    --colorUngu: #1e0342;
+    --colorBiru: #f4f7fe;
+    --colorBlueSide: #1c1e53;
+    --colorBgDashboard: #ededed;
+    --colorBgSearch: #f0f4ff;
+    --colorBgRoom: #f4f6fc;
+    --colorNavTeacher: #0d92f4;
+    --colorSideTeacher: #0d92f4;
+    --paraFont: 'Rubik', sans-serif;
+    --headingFont: 'Montserrat', sans-serif;
+    --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+  
+  .nav-teacher .navbar {
+    background-color: var(--colorNavTeacher);
+    height: 80px;
+    z-index: 1000;
+  }
+  
+  .sidebar-teacher {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    height: calc(100% - 80px);
+    width: 280px !important;
+    background-color: var(--colorSideTeacher) !important;
+    transition: width 0.3s ease;
+    z-index: 100;
+  }
+  .sidebar-teacher .collapsed {
+    width: 70px;
+  }
+  .sidebar-teacher .collapsed a span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sidebar-teacher ul {
+    padding: 0;
+    list-style-type: none;
+    margin-top: 20px;
+  }
+  .sidebar-teacher ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  .sidebar-teacher ul li a.active {
+    color: black;
+  }
+  .sidebar-teacher ul li a span {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .sidebar-teacher .collapsed ul li a span {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .sidebar-teacher ul li a .icon {
+    transition: transform 0.3s ease;
+  }
+  .sidebar-teacher .collapsed ul li a .icon {
+    transform: scale(1.2);
+  }
+  .sd .menu-text-teacher {
+    font-size: 25px;
+    font-weight: 300;
+    top: 13px;
+    left: 18px;
+    position: absolute;
+  }
+  .side.collapsed .menu-text-teacher,
+  .side.collapsed .menu-text-teacher {
+    display: none;
+  }
+  .toggle-teacher {
+    font-size: 24px;
+    color: #ffffff;
+    margin-right: 2px;
+  }
+  .sidebar-teacher .color-sidebar {
+    color: #ffffff !important;
+    font-weight: 500;
+  }
+  .sidebar-teacher .nav-link:hover {
+    color: #906e2a !important;
+  }
+  .sidebar-teacher .active-sidebar {
+    color: #ffb82a !important;
+    font-weight: 700;
+  }
+  .navbg-sa #content {
+    margin-left: 270px;
+    transition: margin-left 0.3s ease;
+    padding: 20px;
+  }
+  
+  .navbg-sa .ul ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+  .navbg-sa .platform {
+    display: inline-block;
+    width: 80px;
+  }
+  
+  .reminder-student {
+    width: 15px;
+    height: 15px;
+    background-color: #5527ff;
+    margin-right: 5px;
+  }
+  .reminder-rating {
+    width: 15px;
+    height: 15px;
+    background-color: #fdc04e;
+    margin-right: 5px;
+  }
+
+  
+  .navbg-sa {
+    background: #DFDFDF;
+    height: auto;
+    min-height: 100vh;
+    width: 100vw;
+  }
+  
