@@ -58,19 +58,6 @@ const Category = ref(category);
                                 </tbody>
                             </table>
                         </div>
-
-                        <!-- Pagination -->
-                        <nav>
-                            <ul class="pagination custom-pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="#">‹</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                                <li class="page-item"><a class="page-link" href="#">›</a></li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -78,41 +65,3 @@ const Category = ref(category);
     </div>
 </template>
 
-<style scoped>
-.custom-table thead {
-    background-color: #dc3545 !important;
-    color: white;
-}
-
-.custom-table {
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.custom-table thead {
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    overflow: hidden;
-}
-
-
-
-.custom-table th {
-    border: none;
-    /* Remove borders */
-}
-
-.custom-table td {
-    background-color: white;
-    /* White background for rows */
-    border-top: 1px solid #dee2e6;
-    /* Horizontal borders only */
-}
-
-.custom-table tbody tr td:first-child,
-.custom-table tbody tr td:nth-child(2),
-.custom-table tbody tr td:last-child {
-    border-right: none;
-    /* Remove vertical borders */
-}
-</style>
