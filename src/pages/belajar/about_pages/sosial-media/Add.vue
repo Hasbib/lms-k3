@@ -15,6 +15,11 @@
                             <input type="url" class="form-control" id="title" v-model="form.link"
                                 placeholder="Enter title" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="image" @change="handleFileUpload"
+                                accept="image/*">
+                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-dark">Submit</button>
                         </div>
@@ -34,14 +39,23 @@ const router = useRouter();
 const form = ref({
     name: '',
     link: '',
+    image: null,
 });
+
+const handleFileUpload = (event) => {
+    form.value.image = event.target.files[0];
+};
 
 const submitForm = async () => {
     const formData = new FormData();
     formData.append('name', form.value.name);
     formData.append('link', form.value.link);
+    if (form.value.image) {
+        formData.append('image', form.value.image);
+    }
+
     try {
-        const response = await axios.post('/sosial-media', formData, {
+        const response = await axios.post('/social-media', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

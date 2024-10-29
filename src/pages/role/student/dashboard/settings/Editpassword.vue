@@ -9,8 +9,8 @@ const isSidebarVisible = ref(true);
 const isCurrentPasswordVisible = ref(false);
 const isNewPasswordVisible = ref(false);
 const isConfirmPasswordVisible = ref(false);
-
-const errorMessage = ref(''); // State untuk menyimpan pesan error
+const isToastVisible = ref(false);
+const errorMessage = ref('');
 
 // State for password fields
 const currentPassword = ref('');
@@ -54,7 +54,7 @@ const updatePassword = async () => {
 
         // Tanggapi hasil dari server
         if (response.data.success) {
-            alert('Password successfully updated.');
+            showToast();
             // Reset the fields
             currentPassword.value = '';
             newPassword.value = '';
@@ -66,6 +66,17 @@ const updatePassword = async () => {
         console.error('Error updating password:', error);
         errorMessage.value = 'Error updating password. Please try again.';
     }
+};
+
+const showToast = () => {
+    isToastVisible.value = true;
+    setTimeout(() => {
+        isToastVisible.value = false;
+    }, 3000);
+};
+
+const closeToast = () => {
+    isToastVisible.value = false;
 };
 
 </script>
@@ -112,8 +123,8 @@ const updatePassword = async () => {
                                                 Password</label>
                                             <div class="password-wrapper">
                                                 <input :type="isCurrentPasswordVisible ? 'text' : 'password'"
-                                                    v-model="currentPassword"
-                                                    id="password-field" class="form-control h-48 mb-2 rounded-3"
+                                                    v-model="currentPassword" id="password-field"
+                                                    class="form-control h-48 mb-2 rounded-3"
                                                     placeholder="Current Password" />
                                                 <div class="toggle-button password-toggle"
                                                     @click="isCurrentPasswordVisible = !isCurrentPasswordVisible">
@@ -143,9 +154,8 @@ const updatePassword = async () => {
                                                 Password</label>
                                             <div class="password-wrapper">
                                                 <input :type="isNewPasswordVisible ? 'text' : 'password'"
-                                                    v-model="newPassword"
-                                                    id="new-password-field" class="form-control h-48 mb-2"
-                                                    placeholder="New Password" />
+                                                    v-model="newPassword" id="new-password-field"
+                                                    class="form-control h-48 mb-2" placeholder="New Password" />
                                                 <div class="toggle-button new-password-toggle"
                                                     @click="isNewPasswordVisible = !isNewPasswordVisible">
                                                     <svg v-if="!isNewPasswordVisible" xmlns="http://www.w3.org/2000/svg"
@@ -174,9 +184,8 @@ const updatePassword = async () => {
                                                 New Password</label>
                                             <div class="password-wrapper">
                                                 <input :type="isConfirmPasswordVisible ? 'text' : 'password'"
-                                                    v-model="confirmPassword"
-                                                    id="confirm-password-field" class="form-control h-48 mb-2"
-                                                    placeholder="Confirm New Password" />
+                                                    v-model="confirmPassword" id="confirm-password-field"
+                                                    class="form-control h-48 mb-2" placeholder="Confirm New Password" />
                                                 <div class="toggle-button confirm-password-toggle"
                                                     @click="isConfirmPasswordVisible = !isConfirmPasswordVisible">
                                                     <svg v-if="!isConfirmPasswordVisible"
@@ -204,11 +213,25 @@ const updatePassword = async () => {
                                             {{ errorMessage }}
                                         </div>
                                         <div class="d-flex justify-content-between">
-                                            <a href="/reset-password" class="garis- ms-2 fs-12 fw-normal">Forgot password</a>
+                                            <a href="/reset-password" class="garis- ms-2 fs-12 fw-normal">Forgot
+                                                password</a>
                                             <ButtonSuccess class="rounded-3 mb-3 fs-12 fw-medium h-43">Change Password
                                             </ButtonSuccess>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                            <div aria-live="polite" aria-atomic="true" class="position-fixed bs-toast">
+                                <div v-if="isToastVisible"
+                                    class="toast align-items-center text-white bg-light-success border-0 show"
+                                    role="alert">
+                                    <div class="d-flex">
+                                        <div class="toast-body">
+                                            Profil Update successfully!
+                                        </div>
+                                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                            @click="closeToast" aria-label="Close"></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

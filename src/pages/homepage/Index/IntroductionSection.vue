@@ -1,9 +1,27 @@
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import ButtonSuccess from '@/components/ButtonSuccess.vue';
 import { skillPage } from '@/data/index.js';
 
+const router = useRouter();
 const skillData = ref(skillPage);
+
+const navigateToPage = (id) => {
+    switch (id) {
+        case 1:
+            router.push('/settings/my-profile');
+            break;
+        case 2:
+            router.push('/courses');
+            break;
+        case 3:
+            router.push('/faq');
+            break;
+        default:
+            console.error('Invalid ID');
+    }
+};
 </script>
 
 <template>
@@ -36,7 +54,7 @@ const skillData = ref(skillPage);
                         <h4 class="text-center mt-3 fs-16 fw-medium">{{ skill.judul }}</h4>
                         <p class="fs-16 mx-md-3 fw-light">{{ skill.deskripsi }}</p>
                         <div class="text-center cbtn">
-                            <ButtonSuccess class="btn btn-hijau rounded-3 w-50 mb-3 fs-14 fw-medium h-39">Get Started
+                            <ButtonSuccess class="btn btn-hijau rounded-3 w-50 mb-3 fs-14 fw-medium h-39" @click="navigateToPage(skill.id)">Get Started
                             </ButtonSuccess>
                         </div>
                     </div>

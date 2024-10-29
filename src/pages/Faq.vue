@@ -25,7 +25,6 @@ onMounted(() => {
     fetchFaqs();
 });
 
-// Computed property untuk data yang difilter
 const filteredData = computed(() => {
     return faqData.value.filter(faq =>
         faq.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||

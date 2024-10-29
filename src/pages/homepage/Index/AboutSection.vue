@@ -5,7 +5,7 @@ import axios from 'axios';
 const aboutData = ref(null);
 
 const fetchAboutUsData = () => {
-    axios.get('/about-us')
+    axios.get('/about-pages')
         .then((response) => {
             aboutData.value = response.data[0];
         })
@@ -48,7 +48,7 @@ onMounted(() => {
                     <h3 class="fs-40 mb-3 fw-semibold">{{ aboutData.title
                         }}</h3>
                     <p class="fs-16 mt-4 mb-5 fw-light text-justify">{{
-                        aboutData.description }}</p>
+                        aboutData.short_description }}</p>
                 </div>
                 <div class="col-md-4">
                     <img :src="`${axios.defaults.baseURL.replace('/api', '')}/uploads/${aboutData.image}`"

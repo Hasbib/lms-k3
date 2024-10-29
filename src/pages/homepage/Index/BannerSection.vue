@@ -37,7 +37,7 @@ onMounted(() => {
                             which aims to help you achieve your goals in the field of technology.
                         </p>
                         <div class="ps-5 pt-1">
-                            <ButtonOrange onclick="window.location.href=''"
+                            <ButtonOrange onclick="window.location.href='/courses'"
                                 class="w-180 cbtn fs-16 rounded-3 mt-4 animate__animated animate__fadeInUp animate__delay-1s">
                                 View Course
                             </ButtonOrange>

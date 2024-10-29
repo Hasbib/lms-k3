@@ -1,3 +1,22 @@
+<script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const sosmedData = ref(null);
+
+const fetchAboutUsData = () => {
+    axios.get('/social-media')
+        .then((response) => {
+            sosmedData.value = response.data;
+        })
+        .catch((error) => {
+            console.error('Error fetching Sosial Media data:', error);
+        });
+};
+onMounted(() => {
+    fetchAboutUsData();
+});
+</script>
 <template>
     <!-- <footer class="container ">
         <div class="row row-cols-5 py-5 border-top bg-footer">
@@ -95,8 +114,9 @@
                 </div>
                 <div class="col-md-2 border-left cborder-bottom">
                     <h5 class="mb-3 cmt-4">Sosial Media</h5>
-                    <ul class="nav">
-                        <li class="nav-item me-3"><a href="#" class="nav-link p-0">
+                    <ul class="nav" v-for="(sosmed, index) in sosmedData" :key="index">
+                        <li class="nav-item me-3">
+                            <a class="nav-link p-0" :href="sosmed.link">
                                 <i class="bi bi-instagram fs-3"></i>
                             </a>
                         </li>

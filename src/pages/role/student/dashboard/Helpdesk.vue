@@ -1,13 +1,16 @@
 <script setup>
+import axios from 'axios';
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import NavbarStudent from '@/layout/NavbarStudent.vue';
 import SidebarStudent from '@/layout/SidebarStudent.vue';
-import SearchComponent from '@/components/SearchComponent.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue'
 import ButtonSuccess from '@/components/ButtonSuccess.vue';
-import { helpDesk } from '@/data/index.js';
 
 const isSidebarVisible = ref(true);
+const faqData = ref([]);
+const searchQuery = ref('');
+const currentPage = ref(1);
+const itemsPerPage = 4;
 
 const checkWindowSize = () => {
     isSidebarVisible.value = window.innerWidth >= 770;
@@ -21,15 +24,31 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('resize', checkWindowSize);
 });
-const helpData = helpDesk;
 
-const currentPage = ref(1);
-const itemsPerPage = 4;
+const fetchFaqs = async () => {
+    try {
+        const response = await axios.get('/faqs');
+        faqData.value = response.data;
+    } catch (error) {
+        console.error('Error fetching FAQ data:', error);
+    }
+};
+
+onMounted(() => {
+    fetchFaqs();
+});
+
+const filteredData = computed(() => {
+    return faqData.value.filter(faq =>
+        faq.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        faq.answer.toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
+})
 
 const paginatedData = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return helpData.slice(start, end);
+    return filteredData.value.slice(start, end);
 });
 
 const changePage = (pageNumber) => {
@@ -37,8 +56,39 @@ const changePage = (pageNumber) => {
 };
 
 const totalPages = computed(() => {
-    return Math.ceil(helpData.length / itemsPerPage);
+    return Math.ceil(filteredData.value.length / itemsPerPage);
 });
+
+const formatDate = (dateString) => {
+    let date;
+    if (dateString.includes("T")) {
+        date = new Date(dateString);
+    } else if (dateString.includes(",")) {
+        date = new Date(dateString);
+    } else {
+        const parts = dateString.split(" ");
+        const monthMap = {
+            "Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04",
+            "May": "05", "Jun": "06", "Jul": "07", "Aug": "08",
+            "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"
+        };
+        const day = parts[1];
+        const month = monthMap[parts[2]];
+        const year = parts[3];
+        const time = parts[4];
+
+        const formattedDateString = `${year}-${month}-${day}T${time.replace('AM', '').replace('PM', '')}:00`;
+        date = new Date(formattedDateString);
+    }
+    if (isNaN(date)) {
+        return "Invalid Date";
+    }
+    const options = {
+        weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
+        hour: 'numeric', minute: 'numeric', hour12: true
+    };
+    return date.toLocaleString('en-US', options).replace(",", " pada");
+};
 </script>
 <template>
     <div class="user-background">
@@ -57,7 +107,9 @@ const totalPages = computed(() => {
                         <h4 class="fs-40 mb-4">Search FAQ</h4>
                         <div class="my-3 mb-3 d-flex justify-content-center">
                             <div class="search-input w-100 me-md-1">
-                                <SearchComponent placeholder="Type your question..." :customClass="'h-43'" />
+                                <input type="text" class="form-control rounded-3 h-43" v-model="searchQuery"
+                                    placeholder="Type your question..." />
+                                <i class="bi bi-search"></i>
                             </div>
                         </div>
                         <p class="border-bottom border-dark mb--6" />
@@ -65,12 +117,12 @@ const totalPages = computed(() => {
                 </div>
 
                 <div class="row cmx-4">
-                    <div v-for="help in paginatedData" :key="help.id"
+                    <div v-for="faq in paginatedData" :key="faq.id_faq"
                         class="card my-2 ms-md-3 p-4 border-0 bg-help rounded-4">
                         <div>
-                            <h4 class="fs-16">{{ help.title }}</h4>
-                            <p class="fs-16">{{ help.deskripsi }}</p>
-                            <p class="fs-12 opacity-25">{{ help.date }}</p>
+                            <h4 class="fs-16 ms-md-3 mt-md-2">{{ faq.title }}</h4>
+                            <p class="fs-16 ms-md-3">{{ faq.answer }}</p>
+                            <p class="fs-12 opacity-25 ms-md-3">{{ formatDate(faq.created_at) }}</p>
                         </div>
                     </div>
                 </div>

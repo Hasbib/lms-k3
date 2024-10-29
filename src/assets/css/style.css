@@ -630,6 +630,9 @@ nav.scrolled {
 .ligh {
   color: #999;
 }
+.text-merah {
+  color: #FF4C4C;
+}
 /* ===== COLOR END ===== */
 
 /* ===== BG COLOR START ===== */
@@ -793,6 +796,9 @@ nav.scrolled {
 .w-58 {
   width: 58%;
 }
+.w-66 {
+  width: 66%;
+}
 .w-87 {
   width: 87.8%;
 }
@@ -927,6 +933,21 @@ nav.scrolled {
   border: 1px solid var(--colorOrange) !important;
 }
 
+.btn-merah {
+  background-color: #FF4C4C;
+  color: white;
+  border: none;
+  padding: 0px 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.btn-merah:hover,
+.btn-merah:active,
+.btn-merah:focus {
+  background-color: #ff2525 !important;
+  color: white !important;
+  border: none !important;
+}
 .btn-hijau {
   background-color: var(--colorHijau);
   color: white;
@@ -1887,6 +1908,15 @@ td:hover .tooltip {
   display: none;
 }
 /* ===== SIDEBAR END ===== */
+
+
+/* ===== MYSPROFIL START ===== */
+/* .bs-toast {
+  top: 60px !important;
+  left: 45% !important;
+  z-index: 1050 !important;
+} */
+/* ===== MYPROFIL END ===== */
 
 #colors-example-2 {
   width: 100%;

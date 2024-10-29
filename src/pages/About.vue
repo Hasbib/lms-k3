@@ -14,7 +14,7 @@ const fetchAboutUsData = () => {
         .catch((error) => {
             console.error('Error fetching About Us data:', error);
         });
-    axios.get('/sosial-media')
+    axios.get('/social-media')
         .then((response) => {
             sosmedData.value = response.data;
         })

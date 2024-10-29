@@ -5,9 +5,9 @@ import SidebarTeacher from '@/layout/SidebarTeacher.vue';
 import ButtonSuccess from '@/components/ButtonSuccess.vue';
 import ButtonTransparanComponen from '@/components/ButtonTransparanComponen.vue';
 import ButtonMerah from '@/components/ButtonMerah.vue';
-import { category } from '@/data/index.js';
+import { categoryName } from '@/data/index.js';
 
-const Category = ref(category);
+const Category = ref(categoryName);
 const searchQuery = ref('');
 const isModalVisible = ref(false);
 const isEditModalVisible = ref(false);
@@ -21,8 +21,8 @@ const itemsPerPage = 10;
 const totalPages = computed(() => Math.ceil(filteredData.value.length / itemsPerPage));
 
 const filteredData = computed(() => {
-    return Category.value.filter(category =>
-        category.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    return Category.value.filter(categoryName =>
+        categoryName.name.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
 });
 
@@ -67,8 +67,8 @@ const closeAddCategoryModal = () => {
     document.body.style.paddingRight = '';
 };
 
-const showEditCategoryModal = (category) => {
-    currentCategory.value = { ...category };
+const showEditCategoryModal = (categoryName) => {
+    currentCategory.value = { ...categoryName };
     isEditModalVisible.value = true;
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
@@ -87,8 +87,8 @@ const saveCategory = () => {
 
 };
 
-const showDeleteCategoryModal = (category) => {
-    categoryToDelete.value = category;
+const showDeleteCategoryModal = (categoryName) => {
+    categoryToDelete.value = categoryName;
     isDeleteModalVisible.value = true;
 
     document.documentElement.style.overflow = 'hidden';
@@ -144,7 +144,7 @@ const closeToast = () => {
                                 placeholder="Search" />
                             <i class="bi bi-search"></i>
                         </div>
-                        <ButtonSuccess class="fs-16 px-2 rounded-3 h-37" @click="showAddCategoryModal">Add Category
+                        <ButtonSuccess class="fs-16 px-4 rounded-3 h-37" @click="showAddCategoryModal">Add Skill
                         </ButtonSuccess>
 
                         <!-- Add Modal -->
@@ -167,6 +167,11 @@ const closeToast = () => {
                                             <input type="text" id="categoryName" class="form-control w-66 h-43"
                                                 placeholder="Enter category name" />
                                         </div>
+                                        <div class="d-flex align-items-center mt-3">
+                                            <label for="categoryName" class="me-5 fs-16 mb-0">Name Skill</label>
+                                            <input type="text" id="categoryName" class="form-control w-66 h-43 ms-3"
+                                                placeholder="Enter skill name" />
+                                        </div>
                                     </div>
                                     <div class="d-flex justify-content-center mb-5">
                                         <ButtonTransparanComponen
@@ -185,14 +190,16 @@ const closeToast = () => {
                                 <thead class="thead-custom">
                                     <tr class="ps-4">
                                         <th class="ps-3 fs-16 fw-medium" style="width: 1px;">No</th>
-                                        <th class="fs-16 fw-medium" style="width: 500px;">Category Name</th>
+                                        <th class="fs-16 fw-medium" style="width: 300px;">Category Name</th>
+                                        <th class="fs-16 fw-medium" style="width: 200px;">Skill Name</th>
                                         <th class="ps-4 fs-16 fw-medium" style="width: 10px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-custom">
-                                    <tr v-for="(category, index) in paginatedData" :key="category.id">
+                                    <tr v-for="(categoryName, index) in paginatedData" :key="categoryName.id">
                                         <td class="ps-4">{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
-                                        <td>{{ category.name }}</td>
+                                        <td>{{ categoryName.name }}</td>
+                                        <td>{{ categoryName.skill }}</td>
                                         <td class="ps-4">
                                             <div class="dropdown ps-2">
                                                 <button class="btn border-0 dropdown-toggle" type="button"
@@ -204,14 +211,14 @@ const closeToast = () => {
                                                     <h5 class="ms-3 fs-16 fw-normal">Action</h5>
                                                     <li>
                                                         <a class="dropdown-item fw-normal fs-16" href="#"
-                                                            @click="showEditCategoryModal(category)">
+                                                            @click="showEditCategoryModal(categoryName)">
                                                             <i class="bi bi-pencil-square me-1 fs-16"></i>
                                                             Edit
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a class="dropdown-item fw-normal" href="#"
-                                                            @click="showDeleteCategoryModal(category)">
+                                                            @click="showDeleteCategoryModal(categoryName)">
                                                             <i class="bi bi-trash me-1 fs-16"></i>
                                                             Delete
                                                         </a>
@@ -225,16 +232,21 @@ const closeToast = () => {
                                             <nav>
                                                 <ul class="pagination custom-pagination justify-content-center">
                                                     <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                                                        <a class="page-link" href="#" @click.prevent="goToPage(currentPage - 1)">
+                                                        <a class="page-link" href="#"
+                                                            @click.prevent="goToPage(currentPage - 1)">
                                                             <i class="bi bi-chevron-left"></i>
                                                         </a>
                                                     </li>
-                                                    <li v-for="page in pageNumbers" :key="page" class="page-item" :class="{ active: page === currentPage }">
-                                                        <a class="page-link" href="#" @click.prevent="goToPage(page)" v-if="page !== '...'">{{ page }}</a>
+                                                    <li v-for="page in pageNumbers" :key="page" class="page-item"
+                                                        :class="{ active: page === currentPage }">
+                                                        <a class="page-link" href="#" @click.prevent="goToPage(page)"
+                                                            v-if="page !== '...'">{{ page }}</a>
                                                         <span class="page-link" v-else>...</span>
                                                     </li>
-                                                    <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                                                        <a class="page-link" href="#" @click.prevent="goToPage(currentPage + 1)">
+                                                    <li class="page-item"
+                                                        :class="{ disabled: currentPage === totalPages }">
+                                                        <a class="page-link" href="#"
+                                                            @click.prevent="goToPage(currentPage + 1)">
                                                             <i class="bi bi-chevron-right"></i>
                                                         </a>
                                                     </li>
@@ -254,7 +266,7 @@ const closeToast = () => {
                                     <div class="modal-content">
                                         <div class="modal-header mb--3">
                                             <h5 class="fs-16 fw-medium" id="exampleModalLabel">
-                                                <i class="bi bi-pencil-square me-1"></i>Edit Category
+                                                <i class="bi bi-pencil-square me-1"></i>Edit Skill
                                             </h5>
                                             <button type="button" class="btn-close fs-12 c-close"
                                                 @click="closeEditCategoryModal"></button>
@@ -266,6 +278,11 @@ const closeToast = () => {
                                                     Category</label>
                                                 <input type="text" id="editCategoryName" v-model="currentCategory.name"
                                                     class="form-control w-66 h-43" placeholder="Enter category name" />
+                                            </div>
+                                            <div class="d-flex align-items-center mt-3">
+                                                <label for="categoryName" class="me-5 fs-16 mb-0">Name Skill</label>
+                                                <input type="text" id="categoryName" class="form-control w-66 h-43 ms-3"
+                                                    placeholder="Enter skill name" />
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
@@ -290,9 +307,9 @@ const closeToast = () => {
                                         <div
                                             class="modal-header mb-3 d-flex flex-column justify-content-center align-items-center text-center">
                                             <PhTrashSimple :size="50" color="#ff4c4c" />
-                                            <h5 class="mb-4 mt-3 fs-16 fw-medium text-merah">Delete Category</h5>
+                                            <h5 class="mb-4 mt-3 fs-16 fw-medium text-merah">Delete Skill</h5>
                                             <h5 class="fs-16 fw-light opacity-50">
-                                                Are you sure you want to delete this category? Once deleted, this data
+                                                Are you sure you want to delete this Skill? Once deleted, this data
                                                 cannot be restored.
                                             </h5>
                                         </div>
@@ -312,7 +329,7 @@ const closeToast = () => {
                                     role="alert">
                                     <div class="d-flex">
                                         <div class="toast-body">
-                                            Category deleted successfully!
+                                            Category deleted succesfully!
                                         </div>
                                         <button type="button" class="btn-close btn-close-white me-2 m-auto"
                                             @click="closeToast" aria-label="Close"></button>
@@ -377,7 +394,7 @@ const closeToast = () => {
 }
 
 .table-custom thead {
-    background-color:rgba(216, 216, 216, 1) !important;
+    background-color: rgba(216, 216, 216, 1) !important;
     color: white;
 }
 

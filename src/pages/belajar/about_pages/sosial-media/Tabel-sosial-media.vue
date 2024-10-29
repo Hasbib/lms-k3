@@ -8,18 +8,18 @@ const router = useRouter();
 
 const fetchAboutUsData = async () => {
     try {
-        const response = await axios.get('/sosial-media');
+        const response = await axios.get('/social-media');
         sosmedData.value = response.data;
     } catch (error) {
         console.error('Error fetching About Us data:', error);
     }
 };
 
-const deleteAbout = async (id_sosial_media) => {
+const deleteAbout = async (id_social_media) => {
     const isConfirmed = window.confirm("Are you sure you want to delete this data sosial media?");
     if (isConfirmed) {
         try {
-            await axios.delete(`/sosial-media/${id_sosial_media}`);
+            await axios.delete(`/social-media/${id_social_media}`);
             fetchAboutUsData();
         } catch (error) {
             console.error('Error deleting alat:', error);
@@ -55,8 +55,8 @@ onMounted(() => {
                             <td>{{ item.link }}</td>
                             <td>
                                 <div>
-                                    <button @click="goToEdit(item.id_sosial_media)" class="btn btn-orange">Edit</button>
-                                    <button @click="deleteAbout(item.id_sosial_media)"
+                                    <button @click="goToEdit(item.id_social_media)" class="btn btn-orange">Edit</button>
+                                    <button @click="deleteAbout(item.id_social_media)"
                                         class="btn btn-danger">Hapus</button>
                                 </div>
                             </td>

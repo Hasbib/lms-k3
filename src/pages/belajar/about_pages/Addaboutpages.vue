@@ -11,11 +11,15 @@
                                 placeholder="Enter title" required>
                         </div>
                         <div class="mb-3">
-                            <label for="isi" class="form-label">Isi</label>
+                            <label for="isi" class="form-label">Deskirpsi Singkat</label>
+                            <textarea class="form-control" id="isi" v-model="form.short_description" cols="30" rows="5"
+                                placeholder="Enter content"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="isi" class="form-label">Deskirpsi</label>
                             <textarea class="form-control" id="isi" v-model="form.description" cols="30" rows="5"
                                 placeholder="Enter content"></textarea>
                         </div>
-
                         <div class="mb-3">
                             <label for="image" class="form-label">Image</label>
                             <input type="file" class="form-control" id="image" @change="handleFileUpload"
@@ -52,7 +56,8 @@ const router = useRouter();
 const form = ref({
     title: '',
     image: null,
-    descriptions: '',
+    description: '',
+    short_description: '',
     subtitles: [{ subtitle: '', description: '' }],
 });
 
@@ -67,7 +72,8 @@ const handleFileUpload = (event) => {
 const submitForm = async () => {
     const formData = new FormData();
     formData.append('title', form.value.title);
-    formData.append('descriptions', form.value.descriptions);
+    formData.append('description', form.value.description);
+    formData.append('short_description', form.value.short_description);
     if (form.value.image) {
         formData.append('image', form.value.image);
     }

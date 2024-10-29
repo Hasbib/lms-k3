@@ -200,14 +200,14 @@ export const skillPage = [
   {
     id: 2,
     image: Skill2,
-    judul: 'Create Your Profile',
-    deskripsi: "Start by creating your personal profile. Fill in the required information, and you'll be ready to explore courses that match your interests in a matter of minutes.",
+    judul: 'Find Your Dream Course',
+    deskripsi: "With a few clicks, explore hundreds of courses designed specifically for different needs. Use keywords or filters to find the course that best suits the skills you want to develop.",
   },
   {
     id: 3,
     image: Skill3,
-    judul: 'Create Your Profile',
-    deskripsi: "Start by creating your personal profile. Fill in the required information, and you'll be ready to explore courses that match your interests in a matter of minutes.",
+    judul: 'Find Your Answer',
+    deskripsi: "Have a question? Find answers in our FAQ section. We've compiled answers to the most frequently asked questions to help you get the information you need quickly.",
   },
 ];
 
@@ -615,7 +615,460 @@ export const category = [
   {
     id: 10,
     name: 'Artificial Intelligence',
-  }
+  },
+  {
+    id: 11,
+    name: 'Data Science',
+  },
+  {
+    id: 12,
+    name: 'Machine Learning',
+  },
+  {
+    id: 13,
+    name: 'Blockchain Technology',
+  },
+  {
+    id: 14,
+    name: 'Mobile App Development',
+  },
+  {
+    id: 15,
+    name: 'Embedded Systems',
+  },
+  {
+    id: 16,
+    name: 'Robotics',
+  },
+  {
+    id: 17,
+    name: 'Quantum Computing',
+  },
+  {
+    id: 18,
+    name: 'Big Data Analytics',
+  },
+  {
+    id: 19,
+    name: 'Digital Marketing',
+  },
+  {
+    id: 20,
+    name: 'SEO Optimization',
+  },
+  {
+    id: 21,
+    name: 'E-commerce Development',
+  },
+  {
+    id: 22,
+    name: 'Graphic Design',
+  },
+  {
+    id: 23,
+    name: 'UI/UX Design',
+  },
+  {
+    id: 24,
+    name: 'Natural Language Processing',
+  },
+  {
+    id: 25,
+    name: 'Virtualization',
+  },
+  {
+    id: 26,
+    name: 'Network Security',
+  },
+  {
+    id: 27,
+    name: 'Penetration Testing',
+  },
+  {
+    id: 28,
+    name: 'Operating Systems',
+  },
+  {
+    id: 29,
+    name: 'Systems Engineering',
+  },
+  {
+    id: 30,
+    name: 'IT Support',
+  },
+  {
+    id: 31,
+    name: 'Technical Writing',
+  },
+  {
+    id: 32,
+    name: 'Content Creation',
+  },
+  {
+    id: 33,
+    name: 'Customer Relationship Management (CRM)',
+  },
+  {
+    id: 34,
+    name: 'Supply Chain Management',
+  },
+  {
+    id: 35,
+    name: 'Database Administration',
+  },
+  {
+    id: 36,
+    name: 'Enterprise Resource Planning (ERP)',
+  },
+  {
+    id: 37,
+    name: 'Business Intelligence',
+  },
+  {
+    id: 38,
+    name: '3D Printing',
+  },
+  {
+    id: 39,
+    name: 'Augmented Reality Design',
+  },
+  {
+    id: 40,
+    name: 'IT Auditing',
+  },
+  {
+    id: 41,
+    name: 'Video Production',
+  },
+  {
+    id: 42,
+    name: 'Internet of Things (IoT)',
+  },
+  {
+    id: 43,
+    name: 'Telecommunications',
+  },
+  {
+    id: 44,
+    name: 'Smart Home Technology',
+  },
+  {
+    id: 45,
+    name: 'Cloud Infrastructure',
+  },
+  {
+    id: 46,
+    name: 'Server Administration',
+  },
+  {
+    id: 47,
+    name: 'User Experience Research',
+  },
+  {
+    id: 48,
+    name: 'Information Systems',
+  },
+  {
+    id: 49,
+    name: 'Social Media Management',
+  },
+  {
+    id: 50,
+    name: 'IT Compliance',
+  },
+  {
+    id: 51,
+    name: 'API Development',
+  },
+  {
+    id: 52,
+    name: 'Product Management',
+  },
+  {
+    id: 53,
+    name: 'Data Visualization',
+  },
+  {
+    id: 54,
+    name: 'Bioinformatics',
+  },
+  {
+    id: 55,
+    name: 'IT Consultancy',
+  },
+  {
+    id: 56,
+    name: 'Environmental Technology',
+  },
+  {
+    id: 57,
+    name: 'Human-Computer Interaction',
+  },
+  {
+    id: 58,
+    name: 'Software Testing',
+  },
+  {
+    id: 59,
+    name: 'Serverless Computing',
+  },
+  {
+    id: 60,
+    name: 'Edge Computing',
+  },
 ];
 
 
+//SUPERADMIN
+export const categoryName = [
+  {
+    id: 1,
+    name: 'Web Development',
+    skill: 'React'
+  },
+  {
+    id: 2,
+    name: 'Game Development',
+    skill: 'Laravel'
+  },
+  {
+    id: 3,
+    name: 'Game Development',
+    skill: 'Vue js'
+  },
+  {
+    id: 4,
+    name: 'Game Development',
+    skill: 'Angular'
+  },
+  {
+    id: 5,
+    name: 'Game Development',
+    skill: 'DevOps'
+  },
+  {
+    id: 6,
+    name: 'Computer Networking',
+    skill: 'Routing'
+  },
+  {
+    id: 7,
+    name: 'Cloud Computing',
+    skill: 'Kubernetes'
+  },
+  {
+    id: 8,
+    name: 'Web Development',
+    skill: 'Django'
+  },
+  {
+    id: 9,
+    name: 'Augmented Reality (AR) dan Virtual Reality (VR)',
+    skill: 'Blender'
+  },
+  {
+    id: 10,
+    name: 'Artificial Intelligence',
+    skill: 'TensorFlow'
+  },
+  {
+    id: 11,
+    name: 'Mobile Development',
+    skill: 'Flutter'
+  },
+  {
+    id: 12,
+    name: 'Data Science',
+    skill: 'Python'
+  },
+  {
+    id: 13,
+    name: 'Cybersecurity',
+    skill: 'Ethical Hacking'
+  },
+  {
+    id: 14,
+    name: 'Web Development',
+    skill: 'HTML & CSS'
+  },
+  {
+    id: 15,
+    name: 'Mobile Development',
+    skill: 'Kotlin'
+  },
+  {
+    id: 16,
+    name: 'Game Development',
+    skill: 'Unity'
+  },
+  {
+    id: 17,
+    name: 'Data Analysis',
+    skill: 'Power BI'
+  },
+  {
+    id: 18,
+    name: 'Artificial Intelligence',
+    skill: 'PyTorch'
+  },
+  {
+    id: 19,
+    name: 'DevOps',
+    skill: 'Docker'
+  },
+  {
+    id: 20,
+    name: 'Cloud Computing',
+    skill: 'AWS'
+  },
+  {
+    id: 21,
+    name: 'Blockchain',
+    skill: 'Ethereum'
+  },
+  {
+    id: 22,
+    name: 'Internet of Things (IoT)',
+    skill: 'Arduino'
+  },
+  {
+    id: 23,
+    name: 'Computer Networking',
+    skill: 'Cisco'
+  },
+  {
+    id: 24,
+    name: 'Web Development',
+    skill: 'Node.js'
+  },
+  {
+    id: 25,
+    name: 'Game Development',
+    skill: 'C++'
+  },
+  {
+    id: 26,
+    name: 'Cybersecurity',
+    skill: 'Penetration Testing'
+  },
+  {
+    id: 27,
+    name: 'Artificial Intelligence',
+    skill: 'Natural Language Processing'
+  },
+  {
+    id: 28,
+    name: 'Data Science',
+    skill: 'R'
+  },
+  {
+    id: 29,
+    name: 'Mobile Development',
+    skill: 'Swift'
+  },
+  {
+    id: 30,
+    name: 'Web Development',
+    skill: 'PHP'
+  },
+  {
+    id: 31,
+    name: 'Augmented Reality (AR) dan Virtual Reality (VR)',
+    skill: 'Unity3D'
+  },
+  {
+    id: 32,
+    name: 'Cloud Computing',
+    skill: 'Azure'
+  },
+  {
+    id: 33,
+    name: 'DevOps',
+    skill: 'CI/CD'
+  },
+  {
+    id: 34,
+    name: 'Data Science',
+    skill: 'SQL'
+  },
+  {
+    id: 35,
+    name: 'Mobile Development',
+    skill: 'Java'
+  },
+  {
+    id: 36,
+    name: 'Computer Networking',
+    skill: 'Network Security'
+  },
+  {
+    id: 37,
+    name: 'Cybersecurity',
+    skill: 'Malware Analysis'
+  },
+  {
+    id: 38,
+    name: 'Web Development',
+    skill: 'JavaScript'
+  },
+  {
+    id: 39,
+    name: 'Game Development',
+    skill: 'Unreal Engine'
+  },
+  {
+    id: 40,
+    name: 'Internet of Things (IoT)',
+    skill: 'Raspberry Pi'
+  },
+  {
+    id: 41,
+    name: 'Artificial Intelligence',
+    skill: 'Machine Learning'
+  },
+  {
+    id: 42,
+    name: 'Data Analysis',
+    skill: 'Excel'
+  },
+  {
+    id: 43,
+    name: 'Cloud Computing',
+    skill: 'Google Cloud'
+  },
+  {
+    id: 44,
+    name: 'Cybersecurity',
+    skill: 'Threat Detection'
+  },
+  {
+    id: 45,
+    name: 'Web Development',
+    skill: 'WordPress'
+  },
+  {
+    id: 46,
+    name: 'Blockchain',
+    skill: 'Smart Contracts'
+  },
+  {
+    id: 47,
+    name: 'Augmented Reality (AR) dan Virtual Reality (VR)',
+    skill: 'Maya'
+  },
+  {
+    id: 48,
+    name: 'Artificial Intelligence',
+    skill: 'Deep Learning'
+  },
+  {
+    id: 49,
+    name: 'Mobile Development',
+    skill: 'React Native'
+  },
+  {
+    id: 50,
+    name: 'Game Development',
+    skill: 'Game Design'
+  }
+];

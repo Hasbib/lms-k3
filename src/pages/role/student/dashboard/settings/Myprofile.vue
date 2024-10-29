@@ -6,6 +6,7 @@ import ButtonSuccess from '@/components/ButtonSuccess.vue';
 import axios from 'axios'; // Import Axios
 
 const isSidebarVisible = ref(true);
+const isToastVisible = ref(false);
 
 // Initialize user data with defaults, including student data
 const user = ref({
@@ -135,14 +136,14 @@ const saveProfile = async () => {
                     student: updatedStudent // Update bagian student
                 };
 
+                // Pastikan URL gambar diperbarui dengan benar
                 profileImage.value = updatedStudent.image
                     ? `${axios.defaults.baseURL.replace('/api', '')}/uploads/${updatedStudent.image}`
                     : require('@assets/images/my-profile.png');
 
                 // Save updated user data to localStorage
                 localStorage.setItem('user', JSON.stringify(updatedUser));
-
-                alert('Profile updated successfully!');
+                showToast();
             } else {
                 alert('Failed to retrieve updated data from server.');
             }
@@ -155,6 +156,17 @@ const saveProfile = async () => {
     }
 };
 
+
+const showToast = () => {
+    isToastVisible.value = true;
+    setTimeout(() => {
+        isToastVisible.value = false;
+    }, 3000);
+};
+
+const closeToast = () => {
+    isToastVisible.value = false;
+};
 </script>
 
 <template>
@@ -172,7 +184,8 @@ const saveProfile = async () => {
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <div class="card rounded-4 p-4 border-0">
-                            <div class="d-flex align-items-center justify-content-center justify-content-md-center justify-content-sm-between flex-sm-row flex-md-column">
+                            <div
+                                class="d-flex align-items-center justify-content-center justify-content-md-center justify-content-sm-between flex-sm-row flex-md-column">
                                 <img :src="profileImage" alt="Profile Image"
                                     class="rounded-circle mb-3 ms-2 me-4 size-profil">
                                 <div class="ms-sm-3 mt-md-2">
@@ -205,7 +218,8 @@ const saveProfile = async () => {
                                         <h6 class="mb-0 fs-16">Email</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="email" class="form-control h-48 fs-16" v-model="user.email" readonly>
+                                        <input type="email" class="form-control h-48 fs-16" v-model="user.email"
+                                            readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-3 align-items-center">
@@ -222,8 +236,8 @@ const saveProfile = async () => {
                                         <h6 class="mb-0 fs-16">Alamat</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control h-48 fs-16" v-model="user.student.address"
-                                            placeholder="alamat">
+                                        <input type="text" class="form-control h-48 fs-16"
+                                            v-model="user.student.address" placeholder="alamat">
                                     </div>
                                 </div>
                                 <div class="row mb-3 align-items-center">
@@ -239,6 +253,18 @@ const saveProfile = async () => {
                                     <ButtonSuccess class="w-25 fs-12 h-40" type="submit">Save</ButtonSuccess>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                    <div aria-live="polite" aria-atomic="true" class="position-fixed bs-toast">
+                        <div v-if="isToastVisible"
+                            class="toast align-items-center text-white bg-light-success border-0 show" role="alert">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    Paasword Update successfully!
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto" @click="closeToast"
+                                    aria-label="Close"></button>
+                            </div>
                         </div>
                     </div>
                 </div>

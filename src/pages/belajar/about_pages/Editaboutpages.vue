@@ -12,6 +12,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" v-model="form.short_description" cols="30"
+                                rows="5" placeholder="Enter description" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
                             <textarea class="form-control" id="description" v-model="form.description" cols="30"
                                 rows="5" placeholder="Enter description" required></textarea>
                         </div>
@@ -48,6 +53,7 @@ import axios from 'axios';
 
 const form = ref({
     title: '',
+    short_description: '',
     description: '',
     image: null,
     subsections: [],
@@ -62,6 +68,7 @@ const fetchAboutUsData = async () => {
     try {
         const response = await axios.get(`/about-pages/${id}`);
         form.value.title = response.data.title;
+        form.value.short_description = response.data.short_description;
         form.value.description = response.data.description;
         form.value.subsections = response.data.subsections;
         imagePreview.value = `${axios.defaults.baseURL.replace('/api', '')}/uploads/${response.data.image}`;
@@ -85,6 +92,7 @@ const submitFormEdit = async () => {
     const id = route.params.id;
     const formData = new FormData();
     formData.append('title', form.value.title);
+    formData.append('short_description', form.value.short_description);
     formData.append('description', form.value.description);
     if (form.value.image) {
         formData.append('image', form.value.image);
