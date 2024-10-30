@@ -27,6 +27,10 @@ import DashboardTC from '@/pages/role/teacher/Dashboard.vue';
 
 //Superadmin
 import DashboardSA from '@/pages/role/superadmin/Dashboard.vue';
+import Sponsor from '@/pages/role/superadmin/cms/Sponsor.vue';
+import MediaPartner from '@/pages/role/superadmin/cms/MediaPartner.vue';
+import SosialMedia from '@/pages/role/superadmin/cms/SosialMedia.vue';
+import AboutUs from '@/pages/role/superadmin/cms/AboutUs.vue';
 
 //Auth Student
 import Chooserole from '@/pages/auth/Choose-role.vue';
@@ -50,6 +54,7 @@ import Error from '@/pages/404/404.vue';
 import Test from '@/pages/Test.vue';
 
 //Sementara Auth Teacher
+import MasterData1 from '@/pages/role/superadmin/MasterData1.vue';
 import MasterData2 from '@/pages/role/superadmin/MasterData2.vue';
 import MasterData3 from '@/pages/role/superadmin/MasterData3.vue';
 
@@ -102,7 +107,10 @@ const routes = [
 
   //Superadmin
   { path: '/dashboard-superadmin', component: DashboardSA },
-
+  { path: '/cms/media-partner', component: MediaPartner },
+  { path: '/cms/sosial-media', component: SosialMedia},
+  { path: '/cms/sponsor', component: Sponsor},
+  { path: '/cms/about-us', component: AboutUs},
 
   //Auth Student
   { path: '/choose-role', component: Chooserole },
@@ -111,8 +119,9 @@ const routes = [
   { path: '/forget-password/:token', component: Forgetpassword },
   { path: '/verification-email', component: Verificationemail },
   { path: '/reset-password', component: Resetpassword },
-
   { path: '/login-admin', component: LoginAdmin },
+
+
   //Auth Teacher
   { path: '/registrasi-teacher', component: RegistrasiTeacher },
   { path: '/login-teacher', component: LoginTeacher },
@@ -123,6 +132,7 @@ const routes = [
   { path: '/test', component: Test },
 
   //Sementara Auth Teacher
+  { path: '/master-data-1', component: MasterData1 },
   { path: '/master-data-2', component: MasterData2 },
   { path: '/master-data-3', component: MasterData3 },
   //BELAJAR /////////
